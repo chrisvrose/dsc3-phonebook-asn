@@ -25,7 +25,7 @@ typedef struct treeNode{
 	struct treeNode* left;
 	struct treeNode* right;
 	//Contains data
-	char name[32];
+	char name[TREE_H_STRLEN];
 	int count;
 	struct node dataHead;
 }treeNode;
