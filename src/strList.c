@@ -16,7 +16,7 @@
 node* getNode(char* data){
     node* newNode;
     if((newNode = malloc(sizeof(node)))){
-        newNode->number;
+        strcpy(newNode->number,data);
         newNode->next=NULL;
     }
     return newNode;
@@ -114,6 +114,6 @@ node* _findAndRemove(node* head,node* root,node* parent,char* searchTerm,int* wa
     }
     else{
         ///Couldnt find in current element, send to next element
-        _findAndRemove(head,root->next,root,searchTerm,wasFound);
+        return _findAndRemove(head,root->next,root,searchTerm,wasFound);
     }
 }
