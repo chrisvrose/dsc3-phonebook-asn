@@ -6,26 +6,40 @@
 #include<string.h>
 #endif
 
-#define PMNULL ((void*)0)
+#ifndef _STDLIB_H
+#include<stdlib.h>
+#endif
 
-///Call the real one
-treeNode* treeSearch(Tree* t,char* searchElement){
-    /* Check against errors */
-    if(t==PMNULL){
-        return PMNULL;
-    }
-    else{
-        return treeSearch(t->root,searchElement);
+#define MAX(a,b) ((a)>(b)?(a):(b))
+
+///A getter
+int getHeight(treeNode* treenode){
+    if(treenode==NULL){
+        return 0;
+    }else{
+        return treenode->height;
     }
 }
 
+treeNode* getNewTreeNode(char* name,char* number){
+    treeNode* newNode;
+    if((newNode = malloc(sizeof(treeNode)))){
+        newNode->left=newNode->right=NULL;
+        newNode->height=0;
+        strcpy(newNode->name,name);
+        newNode->dataHead = insertEnd(NULL,number,NULL);
+    }
+    return newNode;
+}
+
 ///Standard BST implementation
+///Return searched element, null if not found
 treeNode* treeSearch(treeNode* treenode,char* searchElement){
-    if(treenode==PMNULL){
-        return PMNULL;
+    if(treenode==NULL){
+        return NULL;
     }
     int results = strcmp(treenode->name,searchElement);
-    //
+    ///Was it that?
     if(!results){
         return treenode;
     }else if(results>0){
@@ -33,5 +47,10 @@ treeNode* treeSearch(treeNode* treenode,char* searchElement){
     }else{
         return treeSearch(treenode->right,searchElement);
     }
+}
+
+
+treeNode* insert(treeNode* root,char* name,char* number){
+
 }
 

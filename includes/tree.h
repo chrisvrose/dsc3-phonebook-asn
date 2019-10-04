@@ -17,17 +17,14 @@ Addition
 
 #include<strList.h>
 
-typedef struct Tree{
-	treeNode *root;
-}Tree;
-
-
 ///Contains the tree def
 typedef struct treeNode{
 	struct treeNode* left;
 	struct treeNode* right;
-	//Contains data
+	///Contains data key
 	char name[_TREE_H_STRLEN];
-	int count;
-	struct node dataHead;
+	///Height info
+	int height;
+	///Contains data
+	struct node* dataHead;
 }treeNode;
