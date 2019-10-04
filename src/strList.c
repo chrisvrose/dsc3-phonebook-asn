@@ -38,7 +38,7 @@ void removeAll(node* headNode){
 }
 
 
-///Returns modified head of PEEPEE
+///Returns modified head of new list
 node* insertEnd(node* root,char* number,int* outStatus){
     if(root!=NULL){
         node* newNode = getNode(number);

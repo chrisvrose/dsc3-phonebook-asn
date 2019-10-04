@@ -6,6 +6,7 @@ Using - AVL trees
 ## Todo
 
 - [X] Linear list implementations
+  - [X] Linear List search and removals
 - [ ] Tree
   - [ ] Basic Tree implementations
   - [ ] AVL Tree implementations
