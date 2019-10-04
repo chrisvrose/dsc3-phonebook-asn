@@ -1,7 +1,13 @@
+#ifndef _STR_LIST_H
 #include<strList.h>
+#endif
 
 #ifndef _STRING_H
 #include<string.h>
+#endif
+
+#ifndef _STDLIB_H
+#include<stdlib.h>
 #endif
 
 //#define NULL ((void*)0)
@@ -10,7 +16,8 @@
 node* getNode(char* data){
     node* newNode;
     if((newNode = malloc(sizeof(node)))){
-        newNode->number;newNode->next=NULL;
+        newNode->number;
+        newNode->next=NULL;
     }
     return newNode;
 }
@@ -85,12 +92,12 @@ node* findAndRemove(node* root,char* searchTerm,int* wasFound){
 node* _findAndRemove(node* head,node* root,node* parent,char* searchTerm,int* wasFound){
     if(root==NULL){
         ///Could not find, return Head and set state to could not find
-        if(wasFound!=NULL)wasFound=0;
+        if(wasFound!=NULL)*wasFound=0;
         return head;
     }
     if(!strcmp(searchTerm,root->number)){
         ///We have found the term, time to return the appropriate result (and propagate it outwards)
-        if(wasFound!=NULL) wasFound=1;
+        if(wasFound!=NULL) *wasFound=1;
         ///if no parent, remove self, and return it
         if(parent==NULL){
             node* newHead = root->next;
