@@ -71,22 +71,6 @@ node* find(node* root,char* searchElement,node** outParent){
     return NULL;
 }
 
-/* node* findAndRemove(node* root,char* searchElement,int* outStatus){
-    node* parentElement;
-    ///Get Self and parent
-    node* getElement=find(root,searchElement,&parentElement);
-    ///Could not find element
-    if(getElement==NULL){
-        if(outStatus!=NULL) *outStatus=1;
-        
-    }else{
-        ///Could not find parent, means working with root node
-        if(parentElement==NULL){
-            
-        }
-    }
-} */
-
 ///Wrapper for recursive findAndRemove
 ///Root - root node
 node* findAndRemove(node* root,char* searchTerm,int* wasFound){
