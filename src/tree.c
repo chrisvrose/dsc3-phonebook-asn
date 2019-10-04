@@ -1,4 +1,4 @@
-#ifndef TREE_H
+#ifndef _TREE_H
 #include<tree.h>
 #endif
 
@@ -8,6 +8,7 @@
 
 #define PMNULL ((void*)0)
 
+///Call the real one
 treeNode* treeSearch(Tree* t,char* searchElement){
     /* Check against errors */
     if(t==PMNULL){
@@ -18,6 +19,7 @@ treeNode* treeSearch(Tree* t,char* searchElement){
     }
 }
 
+///Standard BST implementation
 treeNode* treeSearch(treeNode* treenode,char* searchElement){
     if(treenode==PMNULL){
         return PMNULL;
@@ -32,3 +34,4 @@ treeNode* treeSearch(treeNode* treenode,char* searchElement){
         return treeSearch(treenode->right,searchElement);
     }
 }
+

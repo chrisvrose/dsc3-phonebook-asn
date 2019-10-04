@@ -11,9 +11,11 @@ Addition
 
 
 */
-#define TREE_H
+#define _TREE_H
 
-#define TREE_H_STRLEN 32
+#define _TREE_H_STRLEN 32
+
+#include<strList.h>
 
 typedef struct Tree{
 	treeNode *root;
@@ -25,15 +27,7 @@ typedef struct treeNode{
 	struct treeNode* left;
 	struct treeNode* right;
 	//Contains data
-	char name[TREE_H_STRLEN];
+	char name[_TREE_H_STRLEN];
 	int count;
 	struct node dataHead;
 }treeNode;
-
-
-///Holds the number data
-typedef struct node{
-	///A standard notation is 10-digit number
-	char number[11];
-	struct node* next;
-}node;
