@@ -7,3 +7,17 @@ typedef struct node{
 	char number[11];
 	struct node* next;
 }node;
+
+node* getNode(char*);
+
+void freeNode(node*,char*);
+
+void removeAll(node*);
+
+node* insertEnd(node*,char*,int*);
+
+node* find(node*,char*,node**);
+
+node* findAndRemove(node*,char*,int*);
+
+node* _findAndRemove(node*,node*,node*,char*,int*);

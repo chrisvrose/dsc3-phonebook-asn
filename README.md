@@ -8,7 +8,7 @@ Using - AVL trees
 - [X] Linear list implementations
   - [X] Linear List search and removals
 - [ ] Tree
-  - [ ] Basic Tree implementations
+  - [X] Basic Tree implementations
   - [ ] AVL Tree implementations
 - [ ] Save/Load tree
   - [ ] Populate from beginning
