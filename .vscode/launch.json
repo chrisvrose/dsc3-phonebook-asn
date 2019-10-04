@@ -8,13 +8,13 @@
             "name": "clang build and debug active file",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "program": "${workspaceFolder}/main.out",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "lldb",
+            "MIMode": "gdb",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
@@ -22,8 +22,8 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "clang build active file",
-            "miDebuggerPath": "/usr/bin/lldb-mi"
+            "preLaunchTask": "clang build project",
+            "miDebuggerPath": "/usr/bin/gdb"
         }
     ]
 }

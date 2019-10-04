@@ -22,6 +22,24 @@
             "group": "build"
         },
         {
+            "type": "shell",
+            "label": "clang build project",
+            "command": "/usr/bin/clang",
+            "args": [
+                "-g",
+                "-I",
+                "${workspaceFolder}/includes/",
+                "${workspaceFolder}/main.c",
+                "${workspaceFolder}/src/*.c",
+                "-o",
+                "${workspaceFolder}/main.out"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+        {
             "type":"shell",
             "label": "make project",
             "command": "make",
