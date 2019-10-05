@@ -74,8 +74,8 @@ treeNode* leftRotate(treeNode* b){
     b->left = treeToChange;
 
     ///Recalc heights
-    b->height = max(height(b->left),height(b->right))+1;
-    a->height = max(height(a->left),height(a->right))+1;
+    b->height = MAX(getHeight(b->left),getHeight(b->right))+1;
+    a->height = MAX(getHeight(a->left),getHeight(a->right))+1;
 
     ///a becomes the new root
     return a;
@@ -90,8 +90,8 @@ treeNode* rightRotate(treeNode* b){
     b->right = treeToChange;
 
     ///Recalc heights
-    a->height = max(height(a->left),height(a->right))+1;
-    b->height = max(height(b->left),height(b->right))+1;
+    a->height = MAX(getHeight(a->left),getHeight(a->right))+1;
+    b->height = MAX(getHeight(b->left),getHeight(b->right))+1;
 
     return a;
 }
