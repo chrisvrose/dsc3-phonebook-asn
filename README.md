@@ -7,11 +7,11 @@ Using - AVL trees
 
 - [X] Linear list implementations
   - [X] Linear List search and removals
-- [ ] Tree
+- [X] Tree
   - [X] Basic Tree implementations
-  - [ ] AVL Tree implementations
+  - [X] AVL Tree implementations
     - [X] Insertions
-    - [ ] Deletions
+    - [X] Deletions
 - [ ] Save/Load tree
-  - [ ] Save to text file
+  - [X] Save to text file
   - [ ] Load from correctly formatted text file

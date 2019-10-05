@@ -7,7 +7,14 @@
 #include<stdlib.h>
 #endif
 
+#ifndef _TREE_H
 #include<tree.h>
+#endif
+
+#ifndef _LOADER_H
+#include<loader.h>
+#endif
+
 
 #define MENU "1. Insert\n2. Remove Entries\n3.Save entries\n4.Load entries\n5. Search entries\n6. Print All\n7. Exit\n"
 
@@ -59,6 +66,16 @@ int main(){
 					fprintf(stderr,"E:Invalid input\n");
 				}
 
+				break;
+			case 3:
+				printf("Enter filename\n:");
+				status1 = scanf(" %31[^\n]",buffer1);
+				if(status1){
+					int status2 = savetREE(phoneBookRoot,buffer1);
+					printf("S:%d\n",status2);
+				}else{
+					fprintf(stderr,"E:Invalid input\n");
+				}
 				break;
 			case 5:
 				printf("Enter name\n:");
