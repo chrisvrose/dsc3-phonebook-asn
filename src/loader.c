@@ -42,5 +42,52 @@ int savetREE(treeNode* root,char* fileName){
 
 
 treeNode* loadtREE(char* fileName){
-
+    ///Init everything
+    treeNode* root = NULL;
+    
+    char name[_TREE_H_STRLEN],number[_TREE_H_STRLEN],getLine[10*_TREE_H_STRLEN];
+    FILE* fp = fopen(fileName,"r");
+    
+    if(fp!=NULL){
+        int i=0,j=0,k=0;
+        while(fgets(getLine,sizeof(10*32),fp)>0){
+            ///I - position on getLine
+            ///J - position on name/number
+            ///K - 0-name,1-number
+            for(i=0;getLine[i]!=0;i++){
+                switch(getLine[i]){
+                    case ':':
+                        ///Switch to num
+                        name[j]=0;
+                        j=0;
+                        ///Switch to storing to number
+                        k=1;
+                        break;
+                    case ',':
+                        ///Number and name is ready
+                        number[j]=0;
+                        j=0;
+                        ///Insert into tree
+                        root = insert(root,name,number);
+                        break;
+                    case '\n':
+                        ///EOL, reset name and word
+                        j=0;
+                        k=0;
+                        break;
+                    default:
+                        ///Where to dump? decide by k
+                        if(k){
+                            ///k=1=>dump into number
+                            number[j++] = getLine[i];
+                        }else{
+                            ///k=0=>dump into name
+                            name[j++] = getLine[i];
+                        }
+                }
+            }
+        }
+    }
+    fclose(fp);
+    return root;
 }

@@ -77,6 +77,15 @@ int main(){
 					fprintf(stderr,"E:Invalid input\n");
 				}
 				break;
+			case 4:
+				printf("Enter filename\n:");
+				status1 = scanf(" %31[^\n]",buffer1);
+				if(status1&&phoneBookRoot==NULL){
+					phoneBookRoot =  loadtREE(buffer1);
+				}else{
+					fprintf(stderr,"E:Invalid input or Tree already in memory\n");
+				}
+				break;
 			case 5:
 				printf("Enter name\n:");
 				status1 = scanf(" %31[^\n]",buffer1);
