@@ -82,6 +82,9 @@ int main(){
 				status1 = scanf(" %31[^\n]",buffer1);
 				if(status1&&phoneBookRoot==NULL){
 					phoneBookRoot =  loadtREE(buffer1);
+					if(phoneBookRoot==NULL){
+						fprintf(stderr,"E:Could not load\n");
+					}
 				}else{
 					fprintf(stderr,"E:Invalid input or Tree already in memory\n");
 				}
