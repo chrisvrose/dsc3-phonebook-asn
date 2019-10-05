@@ -33,17 +33,31 @@ int getBalance(treeNode* root){
     }
 }
 
-
+///Obtain a new treeNode
+///Number if null, will create a listless entry (can be used to dataload)
 treeNode* getNewTreeNode(char* name,char* number){
     treeNode* newNode;
     if((newNode = malloc(sizeof(treeNode)))){
         newNode->left=newNode->right=NULL;
         newNode->height=1;
         strcpy(newNode->name,name);
-        newNode->dataHead = insertEnd(NULL,number,NULL);
+        if(number!=NULL){
+            newNode->dataHead = insertEnd(NULL,number,NULL);
+        }
     }
     return newNode;
 }
+
+
+///Required to trash all data inside if any
+treeNode* trashTreeNode(treeNode* someNode){
+    removeAll(someNode->dataHead);
+    free(someNode);
+    ///Just to help
+    return NULL;
+}
+
+
 
 ///Standard BST implementation
 ///Return searched element, null if not found
@@ -65,9 +79,9 @@ treeNode* treeSearch(treeNode* treenode,char* searchElement){
 
 
 
-treeNode* leftRotate(treeNode* b){
+treeNode* rightRotate(treeNode* b){
     treeNode* a = b->left;
-    treeNode * treeToChange = a->right;
+    treeNode *treeToChange = a->right;
 
     ///Make the rotation
     a->right = b;
@@ -81,7 +95,7 @@ treeNode* leftRotate(treeNode* b){
     return a;
 }
 
-treeNode* rightRotate(treeNode* b){
+treeNode* leftRotate(treeNode* b){
     treeNode* a = b->right;
     treeNode* treeToChange = a->left;
 
@@ -121,6 +135,9 @@ treeNode* insert(treeNode* root,char* name,char* number){
         root->dataHead = insertEnd(root->dataHead,number,NULL);
     }
 
+    ///Make new height
+    root->height = MAX(getHeight(root->left),getHeight(root->right))+1;
+
     ///Done with insertion, get balance factor
     int balance = getBalance(root);
 
@@ -153,7 +170,108 @@ treeNode* insert(treeNode* root,char* name,char* number){
     }
 
 
-    ////for anything else
+    ///for anything else
     return root;
 }
 
+treeNode* getMinTree(treeNode* tree){
+    treeNode* temp = tree;
+    for(;temp!=NULL?temp->left!=NULL:0;temp=temp->left);
+    return temp;
+}
+
+treeNode* removeFromTree(treeNode* root,char* name, char* number){
+    ///If null, dont bother doing anything
+    if(root==NULL){
+        return root;
+    }
+
+    int cmpRes = strcmp(name,root->name);
+    ///BST descend
+    if(cmpRes<0){
+        root->left = removeFromTree(root->left,name,number);
+    }else if(cmpRes>0){
+        root->right = removeFromTree(root->right,name,number);
+    }else{
+        ///Found the element.
+        ///Spicy part - Pull out a single element
+        int wasDeleted = 0;
+        root->dataHead = findAndRemove(root->dataHead,number,&wasDeleted);
+        ///If number is null, delete regardless
+        if(root->dataHead==NULL||number==NULL){
+            ///List has become empty, time to remove this entry
+
+            ///All cases: 
+            ///0-2 children
+            ///This: one or none
+            if( ( root->left==NULL )|| ( root->right==NULL ) ){
+                treeNode* loneChild = root->left?root->left:root->right;
+
+                ///LIE, there was no child
+                if(loneChild==NULL){
+                    loneChild = root;
+                    root = NULL;
+                }else{
+                    ///Copy it over :O
+                    *root = *loneChild;
+                }
+
+                trashTreeNode(loneChild);
+            }else{
+                ///We have two children, oh no
+                ///Get inorder successor
+                treeNode* temp = getMinTree(root->right);
+
+                ///To swap
+                node* tempDataNode;
+                tempDataNode = root->dataHead;
+                root->dataHead = temp->dataHead;
+                temp->dataHead = tempDataNode;
+                strcpy(root->name,temp->name);
+                ///Delete that thing
+                root->right = removeFromTree(root->right,temp->name,NULL);
+            }
+        }
+
+        ///After deletion, nothing is left, no need to balance
+
+        if(root==NULL){
+            return root;
+        }
+
+
+        ///Get the new height
+        root->height = MAX(getHeight(root->left),getHeight(root->right)) +1;
+
+
+        ///Get balance stats
+        int balance = getBalance(root);
+
+        ///4 cases as in insertion
+        ///Left heavy and left not right heavy
+        if(balance>1&&getBalance(root->left)>=0){
+            return rightRotate(root);
+        }
+        ///Right heavy, and right not right heavy
+        if(balance<-1&&getBalance(root->right)<=0){
+            return leftRotate(root);
+        }
+
+
+        ///Left heavy and left is not left or left heavy
+        if(balance>1&&getBalance(root->left)<0){
+            root->left = leftRotate(root->right);
+            return rightRotate(root);
+        }
+
+        if(balance<-1&&getBalance(root->right)>0){
+            root->right = rightRotate(root->right);
+            return leftRotate(root);
+        }
+
+
+    }
+    
+    ///All said, return 
+    return root;
+}

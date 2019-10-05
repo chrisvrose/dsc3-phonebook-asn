@@ -36,6 +36,8 @@ int getBalance(treeNode* root);
 
 treeNode* getNewTreeNode(char* name,char* number);
 
+treeNode* trashTreeNode(treeNode* someNode);
+
 treeNode* treeSearch(treeNode* treenode,char* searchElement);
 
 treeNode* leftRotate(treeNode*);
@@ -43,3 +45,9 @@ treeNode* leftRotate(treeNode*);
 treeNode* rightRotate(treeNode*);
 
 treeNode* insert(treeNode* root,char* name,char* number);
+
+treeNode* removeFromTree(treeNode* root,char* name, char* number);
+
+treeNode* getMinTree(treeNode* tree);
+
+treeNode* removeFromTree(treeNode* root,char* name, char* number);
