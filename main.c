@@ -9,7 +9,7 @@
 
 #include<tree.h>
 
-#define MENU "1. Insert\n2. Remove Entries\n3.Save entries\n4.Load entries\n5.Search entries\n6. Print All\n7. Exit\n"
+#define MENU "1. Insert\n2. Remove Entries\n3.Save entries\n4.Load entries\n5. Search entries\n6. Print All\n7. Exit\n"
 
 void prettyInOrder(treeNode* root){
 	if(root!=NULL){
@@ -59,6 +59,24 @@ int main(){
 					fprintf(stderr,"E:Invalid input\n");
 				}
 
+				break;
+			case 5:
+				printf("Enter name\n:");
+				status1 = scanf(" %31[^\n]",buffer1);
+				if(status1){
+					treeNode* ele = treeSearch(phoneBookRoot,buffer1);
+					if(ele==NULL){
+						printf("Could not find\n");
+					}else{
+						printf("%s:",ele->name);
+						node* temp = ele->dataHead;
+						for(;temp!=NULL;temp=temp->next){
+							printf("%s%c",temp->number,((temp->next==NULL)?'\n':',') );
+						}
+					}
+				}else{
+					fprintf(stderr,"E:Invalid input\n");
+				}
 				break;
 			case 6:
 				prettyInOrder(phoneBookRoot);
