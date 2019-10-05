@@ -87,7 +87,7 @@ treeNode* loadtREE(char* fileName){
                 }
             }
         }
+        fclose(fp);
     }
-    fclose(fp);
     return root;
 }
