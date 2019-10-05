@@ -95,7 +95,7 @@ node* _findAndRemove(node* head,node* root,node* parent,char* searchTerm,int* wa
         if(wasFound!=NULL)*wasFound=0;
         return head;
     }
-    if(!strcmp(searchTerm,root->number)){
+    if(!strcmp(searchTerm?searchTerm:'\0',root->number)){
         ///We have found the term, time to return the appropriate result (and propagate it outwards)
         if(wasFound!=NULL) *wasFound=1;
         ///if no parent, remove self, and return it
