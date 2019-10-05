@@ -10,5 +10,8 @@ Using - AVL trees
 - [ ] Tree
   - [X] Basic Tree implementations
   - [ ] AVL Tree implementations
+    - [X] Insertions
+    - [ ] Deletions
 - [ ] Save/Load tree
-  - [ ] Populate from beginning
+  - [ ] Save to text file
+  - [ ] Load from correctly formatted text file

@@ -28,3 +28,18 @@ typedef struct treeNode{
 	///Contains data
 	struct node* dataHead;
 }treeNode;
+
+
+int getHeight(treeNode* treenode);
+
+int getBalance(treeNode* root);
+
+treeNode* getNewTreeNode(char* name,char* number);
+
+treeNode* treeSearch(treeNode* treenode,char* searchElement);
+
+treeNode* leftRotate(treeNode*);
+
+treeNode* rightRotate(treeNode*);
+
+treeNode* insert(treeNode* root,char* name,char* number);
