@@ -3,6 +3,15 @@
 Implementation of a basic phonebook.
 Using - AVL trees
 
+Loading is done via the file format:
+
+```text
+
+name1:num1,num2,...,
+name2:num1,num2,...,
+
+```
+
 ## Todo
 
 - [X] Linear list implementations
@@ -12,6 +21,6 @@ Using - AVL trees
   - [X] AVL Tree implementations
     - [X] Insertions
     - [X] Deletions
-- [ ] Save/Load tree
+- [X] Save/Load tree
   - [X] Save to text file
-  - [ ] Load from correctly formatted text file
+  - [X] Load from correctly formatted text file
