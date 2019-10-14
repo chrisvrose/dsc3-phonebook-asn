@@ -153,8 +153,14 @@ treeNode *insert(treeNode *root, char *name, char *number, char *email)
     else
     {
         ///Equality, yikes!
-        root->dataHead = insertEnd(root->dataHead, number, NULL);
-        root->emailHead = insertEnd(root->emailHead, email, NULL);
+        if (number)
+        {
+            root->dataHead = insertEnd(root->dataHead, number, NULL);
+        }
+        if (email)
+        {
+            root->emailHead = insertEnd(root->emailHead, email, NULL);
+        }
     }
 
     ///Make new height
@@ -207,30 +213,37 @@ treeNode *getMinTree(treeNode *tree)
     return temp;
 }
 
-
 ///If by chance both numberhead and emailHead get nulled, eradicate that node
 ///1 - phone 0 - email
-treeNode *trimFromTree(treeNode* root,int mode,char* name,char* deletable){
+treeNode *trimFromTree(treeNode *root, int mode, char *name, char *deletable)
+{
     int wasDeleted = 0;
-    if(mode){
-        root->dataHead = findAndRemove(root->dataHead,deletable,&wasDeleted);
+    if (mode)
+    {
+        root->dataHead = findAndRemove(root->dataHead, deletable, &wasDeleted);
     }
-    else{
-        root->emailHead = findAndRemove(root->emailHead,deletable,&wasDeleted);
+    else
+    {
+        root->emailHead = findAndRemove(root->emailHead, deletable, &wasDeleted);
     }
     ///If both are empty
-    if(root->dataHead&&root->emailHead){
-        root = removeFromTree(root,name);
+    if (root->dataHead && root->emailHead)
+    {
+        root = removeFromTree(root, name);
     }
     return root;
 }
 
-treeNode* insertToTree(treeNode* root,int mode,char* name,char* insertable){
-    int wasInserted=0;
-    if(mode){
-        root->dataHead = insertEnd(root->dataHead,insertable,wasInserted);
-    }else{
-        root->emailHead = insertEnd(root->emailHead,insertable,wasInserted);
+treeNode *insertToTree(treeNode *root, int mode, char *name, char *insertable)
+{
+    int wasInserted = 0;
+    if (mode)
+    {
+        root->dataHead = insertEnd(root->dataHead, insertable, wasInserted);
+    }
+    else
+    {
+        root->emailHead = insertEnd(root->emailHead, insertable, wasInserted);
     }
     return root;
 }
