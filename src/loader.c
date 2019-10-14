@@ -28,8 +28,14 @@ int savetREE(treeNode* root,char* fileName){
 		for(;temp!=NULL;temp=temp->next){
 			//fprintf(fp,"%s%s",temp->number,((temp->next==NULL)?",\n":",") );
             fputs(temp->number,fp);
-            fputs((temp->next==NULL)?",\n":",",fp);
+            fputs((temp->next==NULL)?",?":",",fp);
 		}
+        
+        temp = root->emailHead;
+        for(;temp!=NULL;temp=temp->next){
+            fputs(temp->number,fp);
+            fputs((temp->next==NULL)?",\n":",",fp);
+        }
         //printf("Wrote");
         fclose(fp);
 		int gv2 = savetREE(root->right,fileName);
@@ -53,22 +59,29 @@ treeNode* loadtREE(char* fileName){
         while(fgets(getLine,sizeof(10*32),fp)>0){
             ///I - position on getLine
             ///J - position on name/number
-            ///K - 0-name,1-number
+            ///K - 0-name,1-number,2-email
             for(i=0;getLine[i]!=0;i++){
                 switch(getLine[i]){
                     case ':':
                         ///Switch to num
                         name[j]=0;
                         j=0;
+                        root= insert(root,name,NULL,NULL);
                         ///Switch to storing to number
                         k=1;
                         break;
                     case ',':
-                        ///Number and name is ready
+                        ///Number/email is ready
                         number[j]=0;
                         j=0;
                         ///Insert into tree
-                        root = insert(root,name,number);
+                        ///1 -> 1 - number
+                        ///2 -> 0 - email
+                        root = insertToTree(root,2-k,name,number);
+                        break;
+                    case '?':
+                        ///its emails now
+                        k=2;
                         break;
                     case '\n':
                         ///EOL, reset name and word

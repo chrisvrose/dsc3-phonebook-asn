@@ -29,5 +29,6 @@ name2:num1,num2,...,
   - [X] Save to text file
   - [X] Load from correctly formatted text file
 
-- [ ] Add email stuff
-- [ ] Modify to load/save emails
+- [X] Add email stuff
+- [X] Modify to load/save emails
+- [ ] Modify CLI

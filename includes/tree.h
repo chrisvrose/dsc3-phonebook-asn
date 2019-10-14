@@ -50,3 +50,7 @@ treeNode* insert(treeNode* root,char* name,char* number,char* email);
 treeNode* removeFromTree(treeNode* root,char* name);
 
 treeNode* getMinTree(treeNode* tree);
+
+treeNode *insertToTree(treeNode *root, int mode, char *name, char *insertable);
+
+treeNode *trimFromTree(treeNode *root, int mode, char *name, char *deletable);
