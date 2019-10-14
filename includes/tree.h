@@ -27,6 +27,7 @@ typedef struct treeNode{
 	int height;
 	///Contains data
 	struct node* dataHead;
+	struct node* emailHead;
 }treeNode;
 
 
@@ -34,7 +35,7 @@ int getHeight(treeNode* treenode);
 
 int getBalance(treeNode* root);
 
-treeNode* getNewTreeNode(char* name,char* number);
+treeNode* getNewTreeNode(char* name,char* number,char* email);
 
 treeNode* trashTreeNode(treeNode* someNode);
 
@@ -44,10 +45,8 @@ treeNode* leftRotate(treeNode*);
 
 treeNode* rightRotate(treeNode*);
 
-treeNode* insert(treeNode* root,char* name,char* number);
+treeNode* insert(treeNode* root,char* name,char* number,char* email);
 
-treeNode* removeFromTree(treeNode* root,char* name, char* number);
+treeNode* removeFromTree(treeNode* root,char* name);
 
 treeNode* getMinTree(treeNode* tree);
-
-treeNode* removeFromTree(treeNode* root,char* name, char* number);

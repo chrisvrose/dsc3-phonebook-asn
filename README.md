@@ -3,6 +3,10 @@
 Implementation of a basic phonebook.
 Using - AVL trees
 
+Note:
+This is a phonebook of unique names:
+Each name has a name, and a list of phone numbers and emails
+
 Loading is done via the file format:
 
 ```text
@@ -24,3 +28,6 @@ name2:num1,num2,...,
 - [X] Save/Load tree
   - [X] Save to text file
   - [X] Load from correctly formatted text file
+
+- [ ] Add email stuff
+- [ ] Modify to load/save emails

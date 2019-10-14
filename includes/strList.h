@@ -1,10 +1,12 @@
 #define _STR_LIST_H 1
 
+#define _STR_LIST_H_STRLEN
+
 
 ///Holds the number data
 typedef struct node{
 	///A standard notation is 10-digit number
-	char number[11];
+	char number[_STR_LIST_H];
 	struct node* next;
 }node;
 
