@@ -237,13 +237,17 @@ treeNode *trimFromTree(treeNode *root, int mode, char *name, char *deletable)
 treeNode *insertToTree(treeNode *root, int mode, char *name, char *insertable)
 {
     int wasInserted = 0;
-    if (mode)
+    treeNode *toFind = treeSearch(root, name);
+    if (toFind)
     {
-        root->dataHead = insertEnd(root->dataHead, insertable, wasInserted);
-    }
-    else
-    {
-        root->emailHead = insertEnd(root->emailHead, insertable, wasInserted);
+        if (mode)
+        {
+            toFind->dataHead = insertEnd(toFind->dataHead, insertable, &wasInserted);
+        }
+        else
+        {
+            toFind->emailHead = insertEnd(toFind->emailHead, insertable, &wasInserted);
+        }
     }
     return root;
 }
