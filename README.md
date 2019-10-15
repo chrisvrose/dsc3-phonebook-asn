@@ -11,8 +11,8 @@ Loading is done via the file format:
 
 ```text
 
-name1:num1,num2,...,
-name2:num1,num2,...,
+name1:num1,num2,...,?email1,email2,...,
+name2:num1,num2,...,?email1,email2,...,
 
 ```
 
@@ -31,4 +31,4 @@ name2:num1,num2,...,
 
 - [X] Add email stuff
 - [X] Modify to load/save emails
-- [ ] Modify CLI
+- [X] Modify CLI

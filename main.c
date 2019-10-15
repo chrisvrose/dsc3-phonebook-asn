@@ -17,17 +17,19 @@
 
 #include <time.h>
 
-#define MENU                                                                              \
-    "1. Menu\n2. Insert\n3. Remove Entries\n4. Update Entries\n5. Save entries\n6. Load " \
-    "entries\n7. Search entries\n8. Print All\n0. Exit\n"
+#define MENU                                                                                             \
+    "1. Menu\n2. Insert\n3. Remove Entries\n4. Update Entries\n5. Find Entry\n6. Save entries\n7. Load " \
+    "entries\n8. Search entries\n9. Print All\n0. Exit\n"
 
 void printTreeNodeFormatted(treeNode* root)
 {
-    printf("%s:", root->name);
+    printf("Name:%s\n", root->name);
+    printf("Phone numbers:\n\t");
     node* temp = root->dataHead;
     for (; temp != NULL; temp = temp->next) {
-        printf("%s%c", temp->number, ((temp->next == NULL) ? '?' : ','));
+        printf("%s%c", temp->number, ((temp->next == NULL) ? '\n' : ','));
     }
+    printf("Email Addresses:\n\t");
     temp = root->emailHead;
     for (; temp != NULL; temp = temp->next) {
         printf("%s%c", temp->number, ((temp->next == NULL) ? '\n' : ','));
@@ -139,6 +141,18 @@ int main()
             }
             break;
         case 5:
+            printf("Enter name\n:");
+            scanf(" %31[^\n]", buffer1);
+            if (status1) {
+                treeNode* foundNode = treeSearch(foundNode, buffer1);
+                if (foundNode) {
+                    printTreeNodeFormatted(foundNode);
+                } else {
+                    fprintf(stderr, "E:Could not find\n");
+                }
+            }
+            break;
+        case 6:
             printf("Enter filename\n:");
             status1 = scanf(" %31[^\n]", buffer1);
 
@@ -152,7 +166,7 @@ int main()
             end = clock();
             clockable = 1;
             break;
-        case 6:
+        case 7:
             printf("Enter filename\n:");
             status1 = scanf(" %31[^\n]", buffer1);
 
@@ -170,7 +184,7 @@ int main()
             end = clock();
             clockable = 1;
             break;
-        case 7:
+        case 8:
             printf("Enter name\n:");
             status1 = scanf(" %31[^\n]", buffer1);
 
@@ -192,7 +206,7 @@ int main()
             end = clock();
             clockable = 1;
             break;
-        case 8:
+        case 9:
             start = clock();
             prettyInOrder(phoneBookRoot);
             end = clock();
