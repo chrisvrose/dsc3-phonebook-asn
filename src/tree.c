@@ -198,7 +198,7 @@ treeNode* trimFromTree(treeNode* root, int mode, char* name, char* deletable)
         root->emailHead = findAndRemove(root->emailHead, deletable, &wasDeleted);
     }
     ///If both are empty
-    if (root->dataHead && root->emailHead) {
+    if (!(root->dataHead || root->emailHead)) {
         root = removeFromTree(root, name);
     }
     return root;
