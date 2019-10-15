@@ -1,9 +1,9 @@
 #define _LOADER_H
 
 #ifndef _TREE_H
-#include<tree.h>
+#include <tree.h>
 #endif
 
-int savetREE(treeNode* root,char* fileName);
+int savetREE(treeNode* root, char* fileName);
 
 treeNode* loadtREE(char* fileName);

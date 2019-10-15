@@ -14,31 +14,27 @@
 #include <stdlib.h>
 #endif
 
-int savetREE(treeNode *root, char *fileName)
+int savetREE(treeNode* root, char* fileName)
 {
-    if (root != NULL)
-    {
+    if (root != NULL) {
         int gv1 = savetREE(root->left, fileName);
-        FILE *fp = fopen(fileName, "a");
-        if (fp == NULL)
-        {
+        FILE* fp = fopen(fileName, "a");
+        if (fp == NULL) {
             return 0;
         }
         fputs(root->name, fp);
         fputs(":", fp);
-        node *temp = root->dataHead;
-        for (; temp != NULL; temp = temp->next)
-        {
+        node* temp = root->dataHead;
+        for (; temp != NULL; temp = temp->next) {
             //fprintf(fp,"%s%s",temp->number,((temp->next==NULL)?",\n":",") );
             fputs(temp->number, fp);
             fputs(",", fp);
         }
 
-        fputc('?',fp);
+        fputc('?', fp);
 
         temp = root->emailHead;
-        for (; temp != NULL; temp = temp->next)
-        {
+        for (; temp != NULL; temp = temp->next) {
             fputs(temp->number, fp);
             fputs((temp->next == NULL) ? ",\n" : ",", fp);
         }
@@ -47,33 +43,27 @@ int savetREE(treeNode *root, char *fileName)
         int gv2 = savetREE(root->right, fileName);
 
         return gv1 && gv2;
-    }
-    else
-    {
+    } else {
         return 1;
     }
 }
 
-treeNode *loadtREE(char *fileName)
+treeNode* loadtREE(char* fileName)
 {
     ///Init everything
-    treeNode *root = NULL;
+    treeNode* root = NULL;
 
     char name[_TREE_H_STRLEN], number[_TREE_H_STRLEN], getLine[10 * _TREE_H_STRLEN];
-    FILE *fp = fopen(fileName, "r");
+    FILE* fp = fopen(fileName, "r");
 
-    if (fp != NULL)
-    {
+    if (fp != NULL) {
         int i = 0, j = 0, k = 0;
-        while (fgets(getLine, sizeof(10 * 32), fp) > 0)
-        {
+        while (fgets(getLine, sizeof(10 * 32), fp) > 0) {
             ///I - position on getLine
             ///J - position on name/number
             ///K - 0-name,1-number,2-email
-            for (i = 0; getLine[i] != 0; i++)
-            {
-                switch (getLine[i])
-                {
+            for (i = 0; getLine[i] != 0; i++) {
+                switch (getLine[i]) {
                 case ':':
                     ///Switch to num
                     name[j] = 0;
@@ -94,7 +84,7 @@ treeNode *loadtREE(char *fileName)
                 case '?':
                     ///its emails now
                     k = 2;
-                    j=0;
+                    j = 0;
                     break;
                 case '\n':
                     ///EOL, reset name and word
@@ -103,13 +93,10 @@ treeNode *loadtREE(char *fileName)
                     break;
                 default:
                     ///Where to dump? decide by k
-                    if (k)
-                    {
+                    if (k) {
                         ///k=1=>dump into number/email
                         number[j++] = getLine[i];
-                    }
-                    else
-                    {
+                    } else {
                         ///k=0=>dump into name
                         name[j++] = getLine[i];
                     }
