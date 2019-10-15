@@ -13,14 +13,11 @@
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
 
 ///A getter
-int getHeight(treeNode *treenode)
+int getHeight(treeNode* treenode)
 {
-    if (treenode == NULL)
-    {
+    if (treenode == NULL) {
         return 0;
-    }
-    else
-    {
+    } else {
         return treenode->height;
     }
 }
@@ -28,30 +25,25 @@ int getHeight(treeNode *treenode)
 ///Balance:
 ///>0: left heavy
 ///<0: right heavy
-int getBalance(treeNode *root)
+int getBalance(treeNode* root)
 {
-    if (root == NULL)
-    {
+    if (root == NULL) {
         return 0;
-    }
-    else
-    {
+    } else {
         return getHeight(root->left) - getHeight(root->right);
     }
 }
 
 ///Obtain a new treeNode
 ///Number if null, will create a listless entry (can be used to dataload)
-treeNode *getNewTreeNode(char *name, char *number, char *email)
+treeNode* getNewTreeNode(char* name, char* number, char* email)
 {
-    treeNode *newNode;
-    if ((newNode = malloc(sizeof(treeNode))))
-    {
+    treeNode* newNode;
+    if ((newNode = malloc(sizeof(treeNode)))) {
         newNode->left = newNode->right = NULL;
         newNode->height = 1;
         strcpy(newNode->name, name);
-        if (number != NULL)
-        {
+        if (number != NULL) {
             newNode->dataHead = insertEnd(NULL, number, NULL);
             newNode->emailHead = insertEnd(NULL, email, NULL);
         }
@@ -60,7 +52,7 @@ treeNode *getNewTreeNode(char *name, char *number, char *email)
 }
 
 ///Required to trash all data inside if any
-treeNode *trashTreeNode(treeNode *someNode)
+treeNode* trashTreeNode(treeNode* someNode)
 {
     removeAll(someNode->dataHead);
     removeAll(someNode->emailHead);
@@ -71,32 +63,26 @@ treeNode *trashTreeNode(treeNode *someNode)
 
 ///Standard BST implementation
 ///Return searched element, null if not found
-treeNode *treeSearch(treeNode *treenode, char *searchElement)
+treeNode* treeSearch(treeNode* treenode, char* searchElement)
 {
-    if (treenode == NULL)
-    {
+    if (treenode == NULL) {
         return NULL;
     }
     int results = strcmp(treenode->name, searchElement);
     ///Was it that?
-    if (!results)
-    {
+    if (!results) {
         return treenode;
-    }
-    else if (results > 0)
-    {
+    } else if (results > 0) {
         return treeSearch(treenode->left, searchElement);
-    }
-    else
-    {
+    } else {
         return treeSearch(treenode->right, searchElement);
     }
 }
 
-treeNode *rightRotate(treeNode *b)
+treeNode* rightRotate(treeNode* b)
 {
-    treeNode *a = b->left;
-    treeNode *treeToChange = a->right;
+    treeNode* a = b->left;
+    treeNode* treeToChange = a->right;
 
     ///Make the rotation
     a->right = b;
@@ -110,10 +96,10 @@ treeNode *rightRotate(treeNode *b)
     return a;
 }
 
-treeNode *leftRotate(treeNode *b)
+treeNode* leftRotate(treeNode* b)
 {
-    treeNode *a = b->right;
-    treeNode *treeToChange = a->left;
+    treeNode* a = b->right;
+    treeNode* treeToChange = a->left;
 
     ///Make rotations
     a->left = b;
@@ -132,33 +118,25 @@ treeNode *leftRotate(treeNode *b)
         for each: more inserts/
         on whole: 
 */
-treeNode *insert(treeNode *root, char *name, char *number, char *email)
+treeNode* insert(treeNode* root, char* name, char* number, char* email)
 {
     ///Step 1: Perform the bog standard BST insertion
-    if (root == NULL)
-    {
+    if (root == NULL) {
         //We found where to insert, do it
         return getNewTreeNode(name, number, email);
     }
 
     int getCmp = strcmp(name, root->name);
-    if (getCmp < 0)
-    {
+    if (getCmp < 0) {
         root->left = insert(root->left, name, number, email);
-    }
-    else if (getCmp > 0)
-    {
+    } else if (getCmp > 0) {
         root->right = insert(root->right, name, number, email);
-    }
-    else
-    {
+    } else {
         ///Equality, yikes!
-        if (number)
-        {
+        if (number) {
             root->dataHead = insertEnd(root->dataHead, number, NULL);
         }
-        if (email)
-        {
+        if (email) {
             root->emailHead = insertEnd(root->emailHead, email, NULL);
         }
     }
@@ -174,20 +152,17 @@ treeNode *insert(treeNode *root, char *name, char *number, char *email)
     /// 4 outcomes
 
     ///heavy on left side and it got inserted below the left child
-    if (balance > 1 && strcmp(name, root->left->name) < 0)
-    {
+    if (balance > 1 && strcmp(name, root->left->name) < 0) {
         return rightRotate(root);
     }
 
     ///Heavy on the right side, and insertion occured on the right
-    if (balance < -1 && strcmp(name, root->right->name) > 0)
-    {
+    if (balance < -1 && strcmp(name, root->right->name) > 0) {
         return leftRotate(root);
     }
 
     ///Heavy on the left side, got inserted onto the right of the left child
-    if (balance > 1 && strcmp(name, root->left->name) > 0)
-    {
+    if (balance > 1 && strcmp(name, root->left->name) > 0) {
         ///Rotate left
         root->left = leftRotate(root->left);
         ///Rotate self rightways
@@ -195,8 +170,7 @@ treeNode *insert(treeNode *root, char *name, char *number, char *email)
     }
 
     ///Heavy on right, and got inserted on the left
-    if (balance < -1 && strcmp(name, root->right->name) < 0)
-    {
+    if (balance < -1 && strcmp(name, root->right->name) < 0) {
         root->right = rightRotate(root->right);
         return leftRotate(root);
     }
@@ -205,9 +179,9 @@ treeNode *insert(treeNode *root, char *name, char *number, char *email)
     return root;
 }
 
-treeNode *getMinTree(treeNode *tree)
+treeNode* getMinTree(treeNode* tree)
 {
-    treeNode *temp = tree;
+    treeNode* temp = tree;
     for (; temp != NULL ? temp->left != NULL : 0; temp = temp->left)
         ;
     return temp;
@@ -215,94 +189,74 @@ treeNode *getMinTree(treeNode *tree)
 
 ///If by chance both numberhead and emailHead get nulled, eradicate that node
 ///1 - phone 0 - email
-treeNode *trimFromTree(treeNode *root, int mode, char *name, char *deletable)
+treeNode* trimFromTree(treeNode* root, int mode, char* name, char* deletable)
 {
     int wasDeleted = 0;
-    if (mode)
-    {
+    if (mode) {
         root->dataHead = findAndRemove(root->dataHead, deletable, &wasDeleted);
-    }
-    else
-    {
+    } else {
         root->emailHead = findAndRemove(root->emailHead, deletable, &wasDeleted);
     }
     ///If both are empty
-    if (root->dataHead && root->emailHead)
-    {
+    if (root->dataHead && root->emailHead) {
         root = removeFromTree(root, name);
     }
     return root;
 }
 
-treeNode *insertToTree(treeNode *root, int mode, char *name, char *insertable)
+treeNode* insertToTree(treeNode* root, int mode, char* name, char* insertable)
 {
     int wasInserted = 0;
-    treeNode *toFind = treeSearch(root, name);
-    if (toFind)
-    {
-        if (mode)
-        {
+    treeNode* toFind = treeSearch(root, name);
+    if (toFind) {
+        if (mode) {
             toFind->dataHead = insertEnd(toFind->dataHead, insertable, &wasInserted);
-        }
-        else
-        {
+        } else {
             toFind->emailHead = insertEnd(toFind->emailHead, insertable, &wasInserted);
         }
     }
     return root;
 }
 
-treeNode *removeFromTree(treeNode *root, char *name)
+treeNode* removeFromTree(treeNode* root, char* name)
 {
     ///If null, dont bother doing anything
-    if (root == NULL)
-    {
+    if (root == NULL) {
         return root;
     }
 
     int cmpRes = strcmp(name, root->name);
     ///BST descend
-    if (cmpRes < 0)
-    {
+    if (cmpRes < 0) {
         root->left = removeFromTree(root->left, name);
-    }
-    else if (cmpRes > 0)
-    {
+    } else if (cmpRes > 0) {
         root->right = removeFromTree(root->right, name);
-    }
-    else
-    {
+    } else {
         ///Found the element.
         ///If number is null, delete regardless
         ///All cases:
         ///0-2 children
         ///This: one or none
-        if ((root->left == NULL) || (root->right == NULL))
-        {
-            treeNode *loneChild = root->left ? root->left : root->right;
+        if ((root->left == NULL) || (root->right == NULL)) {
+            treeNode* loneChild = root->left ? root->left : root->right;
 
             ///LIE, there was no child
-            if (loneChild == NULL)
-            {
+            if (loneChild == NULL) {
                 loneChild = root;
                 root = NULL;
-            }
-            else
-            {
+            } else {
                 ///Copy it over :O
                 *root = *loneChild;
             }
 
             trashTreeNode(loneChild);
-        }
-        else
-        {
+        } else {
             ///We have two children, oh no
             ///Get inorder successor
-            treeNode *temp = getMinTree(root->right);
+            treeNode* temp = getMinTree(root->right);
 
             ///To swap
-            node *tempDataNode;
+            node* tempDataNode;
             tempDataNode = root->dataHead;
             root->dataHead = temp->dataHead;
             temp->dataHead = tempDataNode;
@@ -318,8 +272,7 @@ treeNode *removeFromTree(treeNode *root, char *name)
 
         ///After deletion, nothing is left, no need to balance
 
-        if (root == NULL)
-        {
+        if (root == NULL) {
             return root;
         }
 
@@ -331,25 +284,21 @@ treeNode *removeFromTree(treeNode *root, char *name)
 
         ///4 cases as in insertion
         ///Left heavy and left not right heavy
-        if (balance > 1 && getBalance(root->left) >= 0)
-        {
+        if (balance > 1 && getBalance(root->left) >= 0) {
             return rightRotate(root);
         }
         ///Right heavy, and right not right heavy
-        if (balance < -1 && getBalance(root->right) <= 0)
-        {
+        if (balance < -1 && getBalance(root->right) <= 0) {
             return leftRotate(root);
         }
 
         ///Left heavy and left is not left or left heavy
-        if (balance > 1 && getBalance(root->left) < 0)
-        {
+        if (balance > 1 && getBalance(root->left) < 0) {
             root->left = leftRotate(root->right);
             return rightRotate(root);
         }
 
-        if (balance < -1 && getBalance(root->right) > 0)
-        {
+        if (balance < -1 && getBalance(root->right) > 0) {
             root->right = rightRotate(root->right);
             return leftRotate(root);
         }
