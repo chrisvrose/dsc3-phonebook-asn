@@ -144,7 +144,7 @@ int main()
             printf("Enter name\n:");
             scanf(" %31[^\n]", buffer1);
             if (status1) {
-                treeNode* foundNode = treeSearch(foundNode, buffer1);
+                treeNode* foundNode = treeSearch(phoneBookRoot, buffer1);
                 if (foundNode) {
                     printTreeNodeFormatted(foundNode);
                 } else {
