@@ -1,0 +1,230 @@
+1. Menu
+2. Insert
+3. Remove Entries
+4. Update Entries
+5. Find Entry
+6. Save entries
+7. Load entries
+8. Print All
+0. Exit
+Option
+:7
+Enter filename
+:config.sample
+Loaded records.
+Query took:0.00016s
+Option
+:2
+Enter name
+:Chris
+Enter number
+:9986
+Enter email
+:chris@gmail.com
+Query took:0.00001s
+Option
+:8
+Name:ABCS
+Phone numbers:
+        1889,2,3,4
+Email Addresses:
+        Hello@gmail.com
+Name:B
+Phone numbers:
+        5557
+Email Addresses:
+        Something@gmail.com
+Name:C
+Phone numbers:
+        6867
+Email Addresses:
+        Bobby@gmail.com
+Name:Chris
+Phone numbers:
+        9986
+Email Addresses:
+        chris@gmail.com
+Name:D
+Phone numbers:
+        7568
+Email Addresses:
+        Lol@gmail.com,Cat@gmail.com
+Name:E
+Phone numbers:
+        8654
+Email Addresses:
+        How@gmail.com
+Name:F
+Phone numbers:
+        9998
+Email Addresses:
+        Popeye@gmail.com
+Name:G
+Phone numbers:
+        1550
+Email Addresses:
+        atb@gmail.com
+Name:H
+Phone numbers:
+        1551
+Email Addresses:
+        lots@gmail.com
+Name:I
+Phone numbers:
+        1266
+Email Addresses:
+        abcde@gmail.com
+Name:J
+Phone numbers:
+        1385
+Email Addresses:
+        bards@gmail.com
+Query took:0.00046s
+Option
+:5
+Enter name
+:Chris
+Name:Chris
+Phone numbers:
+        9986
+Email Addresses:
+        chris@gmail.com
+Query took:0.00012s
+Option
+:3
+Enter name
+:ABCS
+Query took:0.00001s
+Option
+:8
+Name:B
+Phone numbers:
+        5557
+Email Addresses:
+        Something@gmail.com
+Name:C
+Phone numbers:
+        6867
+Email Addresses:
+        Bobby@gmail.com
+Name:Chris
+Phone numbers:
+        9986
+Email Addresses:
+        chris@gmail.com
+Name:D
+Phone numbers:
+        7568
+Email Addresses:
+        Lol@gmail.com,Cat@gmail.com
+Name:E
+Phone numbers:
+        8654
+Email Addresses:
+        How@gmail.com
+Name:F
+Phone numbers:
+        9998
+Email Addresses:
+        Popeye@gmail.com
+Name:G
+Phone numbers:
+        1550
+Email Addresses:
+        atb@gmail.com
+Name:H
+Phone numbers:
+        1551
+Email Addresses:
+        lots@gmail.com
+Name:I
+Phone numbers:
+        1266
+Email Addresses:
+        abcde@gmail.com
+Name:J
+Phone numbers:
+        1385
+Email Addresses:
+        bards@gmail.com
+Query took:0.00042s
+Option
+:4
+Enter name
+:Chris
+Name:Chris
+Phone numbers:
+        9986
+Email Addresses:
+        chris@gmail.com
+1. Insert
+2. Delete
+:1
+1. Email
+2. Phone number
+:1
+Enter element to insert
+:chris01@gmail.com
+Query took:0.00001s
+Option
+:8
+Name:B
+Phone numbers:
+        5557
+Email Addresses:
+        Something@gmail.com
+Name:C
+Phone numbers:
+        6867
+Email Addresses:
+        Bobby@gmail.com
+Name:Chris
+Phone numbers:
+        9986
+Email Addresses:
+        chris@gmail.com,chris01@gmail.com
+Name:D
+Phone numbers:
+        7568
+Email Addresses:
+        Lol@gmail.com,Cat@gmail.com
+Name:E
+Phone numbers:
+        8654
+Email Addresses:
+        How@gmail.com
+Name:F
+Phone numbers:
+        9998
+Email Addresses:
+        Popeye@gmail.com
+Name:G
+Phone numbers:
+        1550
+Email Addresses:
+        atb@gmail.com
+Name:H
+Phone numbers:
+        1551
+Email Addresses:
+        lots@gmail.com
+Name:I
+Phone numbers:
+        1266
+Email Addresses:
+        abcde@gmail.com
+Name:J
+Phone numbers:
+        1385
+Email Addresses:
+        bards@gmail.com
+Query took:0.00060s
+Option
+:6
+Enter filename
+:config2.sample
+S:1
+Query took:0.00058s
+Option
+:0
+...

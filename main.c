@@ -19,7 +19,7 @@
 
 #define MENU                                                                                             \
     "1. Menu\n2. Insert\n3. Remove Entries\n4. Update Entries\n5. Find Entry\n6. Save entries\n7. Load " \
-    "entries\n8. Search entries\n9. Print All\n0. Exit\n"
+    "entries\n8. Print All\n0. Exit\n"
 
 void printTreeNodeFormatted(treeNode* root)
 {
@@ -142,15 +142,26 @@ int main()
             break;
         case 5:
             printf("Enter name\n:");
-            scanf(" %31[^\n]", buffer1);
+            status1 = scanf(" %31[^\n]", buffer1);
+
+            start = clock();
             if (status1) {
-                treeNode* foundNode = treeSearch(phoneBookRoot, buffer1);
-                if (foundNode) {
-                    printTreeNodeFormatted(foundNode);
+                treeNode* ele = treeSearch(phoneBookRoot, buffer1);
+                if (ele == NULL) {
+                    printf("Could not find\n");
                 } else {
-                    fprintf(stderr, "E:Could not find\n");
+                    printTreeNodeFormatted(ele);
+                    // printf("%s:", ele->name);
+                    // node* temp = ele->dataHead;
+                    // for (; temp != NULL; temp = temp->next) {
+                    //     printf("%s%c", temp->number, ((temp->next == NULL) ? '\n' : ','));
+                    // }
                 }
+            } else {
+                fprintf(stderr, "E:Invalid input\n");
             }
+            end = clock();
+            clockable = 1;
             break;
         case 6:
             printf("Enter filename\n:");
@@ -185,28 +196,6 @@ int main()
             clockable = 1;
             break;
         case 8:
-            printf("Enter name\n:");
-            status1 = scanf(" %31[^\n]", buffer1);
-
-            start = clock();
-            if (status1) {
-                treeNode* ele = treeSearch(phoneBookRoot, buffer1);
-                if (ele == NULL) {
-                    printf("Could not find\n");
-                } else {
-                    printf("%s:", ele->name);
-                    node* temp = ele->dataHead;
-                    for (; temp != NULL; temp = temp->next) {
-                        printf("%s%c", temp->number, ((temp->next == NULL) ? '\n' : ','));
-                    }
-                }
-            } else {
-                fprintf(stderr, "E:Invalid input\n");
-            }
-            end = clock();
-            clockable = 1;
-            break;
-        case 9:
             start = clock();
             prettyInOrder(phoneBookRoot);
             end = clock();
